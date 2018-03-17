@@ -3,6 +3,7 @@ package models;
 public class Pessoa {
     private String nome;
 
+    public Pessoa(){}
 
     public Pessoa(String nome) {
         this.nome = nome;
@@ -14,5 +15,12 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                '}';
     }
 }
