@@ -13,15 +13,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class MainTest {
+    static Consumer imprimi = System.out::println;
+    // (Pessoa e)-> e.getName();
+    static Function<Pessoa, String> funcPegaNomePessoa= Pessoa::getNome;
     public static void main(String[] args) {
         String uri = "/etc/propriedades/lista-pessoas.txt";
-        Consumer imprimi = System.out::println;
-        /*
+
+
         List<Pessoa> listaPessoas = new ArrayList<>();
         Path arqListaPessoas = Paths.get(uri);
         try {
@@ -33,13 +36,15 @@ public class MainTest {
             }
 
 
-            listaPessoas.forEach(imprimi);
+           imprimiLista(listaPessoas);
+            System.out.println("_________");
+           converteObjeto(listaPessoas,funcPegaNomePessoa);
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
-        System.out.println("____________");
+     /*   System.out.println("____________");
         ObjectMapper mapper = new ObjectMapper();
         List<Pessoa> lp = new ArrayList<>();
         try {
@@ -49,7 +54,16 @@ public class MainTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
 
+    }
 
+    public static  <T> void imprimiLista(List<T> lista){
+        lista.forEach(imprimi);
+
+    }
+
+    public static <T,R> void converteObjeto(List<T> lista, Function<T,R> function){
+       lista.forEach(lis->System.out.println(function));
     }
 }
